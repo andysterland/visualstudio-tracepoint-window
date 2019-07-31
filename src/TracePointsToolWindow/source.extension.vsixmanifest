@@ -6,6 +6,7 @@
         <Description xml:space="preserve">A tool window for showing a filterable view of TracePoint messages that fire while debugging.</Description>
         <License>LICENSE.txt</License>
         <Icon>Resources\ExtensionIcon.png</Icon>
+        <PreviewImage>Resources\PreviewIcon.png</PreviewImage>
         <Tags>Visual Studio, Debug, TracePoints</Tags>
         <Preview>true</Preview>
     </Metadata>
