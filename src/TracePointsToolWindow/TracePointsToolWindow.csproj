@@ -96,6 +96,14 @@
     <Resource Include="Resources\FilterIcon.png" />
     <Resource Include="Resources\AutoScrollIconChecked.png" />
     <Resource Include="Resources\AutoScrollIconUnchecked.png" />
+    <Content Include="LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\ExtensionIcon.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\TracePointHostWindow1Command.png" />
     <VSCTCompile Include="TracePointsToolWindowPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
