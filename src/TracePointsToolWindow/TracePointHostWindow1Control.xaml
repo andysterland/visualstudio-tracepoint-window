@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="TracePointsToolWindow.TracePointHostWindow1Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             xmlns:local="clr-namespace:TracePointsToolWindow"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             Name="TracePointHostWindow">
+    <UserControl.Resources>
+        <Style x:Key="ToolBarTrayStyle" TargetType="{x:Type ToolBarTray}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"/>
+        </Style>
+        <Style x:Key="ToolBarStyle" TargetType="{x:Type ToolBar}">
+            <Setter Property="Margin" Value="0,0,-14,0"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"/>
+        </Style>
+        <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        </Style>
+        <Style x:Key="ToolbarButtonStyle" TargetType="{x:Type Button}">
+        </Style>
+        <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"/>
+        </Style>
+        <Style x:Key="DataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingBackgroundKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingTextKey}}"/>
+        </Style>
+        <Style x:Key="DataGridRowHeaderStyle" TargetType="{x:Type DataGridRowHeader}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingBackgroundKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingTextKey}}"/>
+        </Style>
+        <Style x:Key="DataGridRowStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingBackgroundKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingTextKey}}"/>
+        </Style>
+        <Style x:Key="FilterBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.CaptionTextKey}}"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="5, 1, 0, 0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Image x:Key="ClearIcon" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/ClearIcon.png" Width="16" Height="16"/>
+        <Image x:Key="ClearIconChecked" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/ClearIconChecked.png" Width="16" Height="16"/>
+        <Image x:Key="ClearIconUnchecked" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/ClearIconUnchecked.png" Width="16" Height="16"/>
+        <Image x:Key="FilterIcon" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/FilterIcon.png" Width="16" Height="16"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <ToolBar Style="{StaticResource ToolBarStyle}" ToolBarTray.IsLocked="True">
+                <Button x:Name="btnClear" Click="BtnClear_Click" HorizontalAlignment="Left" Style="{StaticResource ToolbarButtonStyle}" Content="{StaticResource ClearIcon}" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnClearTooltip}">
+                </Button>
+                <ToggleButton x:Name="tglClearOnSessionStart"  Content="{StaticResource ClearIconUnchecked}" IsChecked="True" Checked="tglClearOnSessionStart_Checked" Unchecked="tglClearOnSessionStart_Unchecked" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnClearOnSessionStartTooltip}">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}">
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content" Value="{StaticResource ClearIconChecked}"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content" Value="{StaticResource ClearIconUnchecked}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
+                <StackPanel>
+                    <TextBox Name="txtFilter" Style="{StaticResource FilterBoxStyle}" TextChanged="TxtFilter_TextChanged">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/TracePointsToolWindow;component/Resources/FilterIcon.png" Stretch="Uniform" AlignmentX="Right">
+                                <ImageBrush.Transform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="-3"/>
+                                    </TransformGroup>
+                                </ImageBrush.Transform>
+                            </ImageBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                </StackPanel>
+            </ToolBar>
+            <DataGrid Name="gridTracePoints" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding}" RowStyle="{StaticResource DataGridRowStyle}" ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}" RowHeaderStyle="{StaticResource DataGridRowHeaderStyle}" HorizontalGridLinesBrush="{DynamicResource {x:Static vsshell:VsBrushes.GridLineKey}}"  AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderTime}" Width="80" Binding="{Binding DisplayTime}"  />
+                    <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderMessage}" Binding="{Binding Message}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>
