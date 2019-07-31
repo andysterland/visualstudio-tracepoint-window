@@ -24,7 +24,10 @@ Each row in the TracePoint windows corresponds to a bound TracePoint firing. The
 Clicking this button clears all the messages in the current display.
 
 ### Clear on Debug Start
-This is a toggle button. In the checked state, blue outline, the messages will be cleared when a new debug session starts. In the unchecked state messages won't be cleared on a new debug session and will persist until manually cleared. When not clearing messages on session start it's worth keeping in mind that the times are relative to the start of each induvial debug session.
+This is a toggle button. In the checked state, blue outline, the messages will be cleared when a new debug session starts. In the unchecked state messages won't be cleared on a new debug session and will persist until manually cleared. When not clearing messages on session start it's worth keeping in mind that the times are relative to the start of each induvial debug session. The default is checked.
+
+### Auto Scroll
+This is a toggle button. In the checked state, blue outline, the view will scroll to show the latest message added. In the unchecked state the scroll position will stay the same. The default is checked.
 
 ### Filtering
 Typing in the filter text box will winnow the list of messages to those containing the filter string. The comparison is case insensitive and currently only simple string comparisons are supported, no regular expressions.
