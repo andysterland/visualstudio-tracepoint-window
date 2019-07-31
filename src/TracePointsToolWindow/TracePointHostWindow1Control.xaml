@@ -18,8 +18,11 @@
             <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"/>
         </Style>
         <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Margin" Value="0, 0, 2, 0"/>
         </Style>
         <Style x:Key="ToolbarButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"/>
+            <Setter Property="Margin" Value="0, 0, 2, 0"/>
         </Style>
         <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"/>
@@ -28,6 +31,7 @@
         <Style x:Key="DataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingBackgroundKey}}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingTextKey}}"/>
+            <Setter Property="Margin" Value="0, 1, 0, 0"/>
         </Style>
         <Style x:Key="DataGridRowHeaderStyle" TargetType="{x:Type DataGridRowHeader}">
             <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingBackgroundKey}}"/>
@@ -36,6 +40,7 @@
         <Style x:Key="DataGridRowStyle" TargetType="{x:Type DataGridRow}">
             <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingBackgroundKey}}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingTextKey}}"/>
+            <Setter Property="Height" Value="20"/>
         </Style>
         <Style x:Key="FilterBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.CaptionTextKey}}"/>
@@ -47,15 +52,22 @@
         <Image x:Key="ClearIcon" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/ClearIcon.png" Width="16" Height="16"/>
         <Image x:Key="ClearIconChecked" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/ClearIconChecked.png" Width="16" Height="16"/>
         <Image x:Key="ClearIconUnchecked" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/ClearIconUnchecked.png" Width="16" Height="16"/>
+        <Image x:Key="AutoScrollIconChecked" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/AutoScrollIconChecked.png" Width="16" Height="16"/>
+        <Image x:Key="AutoScrollIconUnchecked" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/AutoScrollIconUnchecked.png" Width="16" Height="16"/>
         <Image x:Key="FilterIcon" Source="pack://application:,,,/TracePointsToolWindow;component/Resources/FilterIcon.png" Width="16" Height="16"/>
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Orientation="Vertical">
             <ToolBar Style="{StaticResource ToolBarStyle}" ToolBarTray.IsLocked="True">
-                <Button x:Name="btnClear" Click="BtnClear_Click" HorizontalAlignment="Left" Style="{StaticResource ToolbarButtonStyle}" Content="{StaticResource ClearIcon}" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnClearTooltip}">
+                <Button x:Name="btnClear" Click="btnClear_Click" HorizontalAlignment="Left" Style="{StaticResource ToolbarButtonStyle}" Content="{StaticResource ClearIcon}" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnClearTooltip}">
                 </Button>
-                <ToggleButton x:Name="tglClearOnSessionStart"  Content="{StaticResource ClearIconUnchecked}" IsChecked="True" Checked="tglClearOnSessionStart_Checked" Unchecked="tglClearOnSessionStart_Unchecked" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnClearOnSessionStartTooltip}">
+                <ToggleButton x:Name="tglClearOnSessionStart" Content="{StaticResource ClearIconChecked}" IsChecked="True" Checked="tglClearOnSessionStart_Checked" Unchecked="tglClearOnSessionStart_Unchecked" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnClearOnSessionStartTooltip}">
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}">
                             <Style.Triggers>
@@ -69,8 +81,22 @@
                         </Style>
                     </ToggleButton.Style>
                 </ToggleButton>
+                <ToggleButton x:Name="tglAutoScroll" Content="{StaticResource AutoScrollIconChecked}" IsChecked="True" Checked="tglAutoScroll_Checked" Unchecked="tglAutoScroll_Unchecked" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnAutoScrollTooltip}">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}">
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content" Value="{StaticResource AutoScrollIconChecked}"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Content" Value="{StaticResource AutoScrollIconUnchecked}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
                 <StackPanel>
-                    <TextBox Name="txtFilter" Style="{StaticResource FilterBoxStyle}" TextChanged="TxtFilter_TextChanged">
+                    <TextBox Name="txtFilter" Style="{StaticResource FilterBoxStyle}" TextChanged="txtFilter_TextChanged">
                         <TextBox.Background>
                             <ImageBrush ImageSource="pack://application:,,,/TracePointsToolWindow;component/Resources/FilterIcon.png" Stretch="Uniform" AlignmentX="Right">
                                 <ImageBrush.Transform>
@@ -86,12 +112,12 @@
                     </TextBox>
                 </StackPanel>
             </ToolBar>
-            <DataGrid Name="gridTracePoints" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding}" RowStyle="{StaticResource DataGridRowStyle}" ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}" RowHeaderStyle="{StaticResource DataGridRowHeaderStyle}" HorizontalGridLinesBrush="{DynamicResource {x:Static vsshell:VsBrushes.GridLineKey}}"  AutoGenerateColumns="False" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderTime}" Width="80" Binding="{Binding DisplayTime}"  />
-                    <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderMessage}" Binding="{Binding Message}" />
-                </DataGrid.Columns>
-            </DataGrid>
         </StackPanel>
+        <DataGrid Name="gridTracePoints" Grid.Row="1" VerticalScrollBarVisibility="Auto" EnableRowVirtualization="True"  Style="{StaticResource DataGridStyle}" ItemsSource="{Binding}" RowStyle="{StaticResource DataGridRowStyle}" ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}" RowHeaderStyle="{StaticResource DataGridRowHeaderStyle}" HorizontalGridLinesBrush="{DynamicResource {x:Static vsshell:VsBrushes.GridLineKey}}"  AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderTime}" Width="80" Binding="{Binding DisplayTime}"  />
+                <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderMessage}" Binding="{Binding Message}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

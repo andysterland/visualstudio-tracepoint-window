@@ -11,5 +11,7 @@ namespace TracePointsToolWindow
     {
         public static bool ClearOnSessionStart = true;
         public static bool ClearOnSessionStartDefault = true;
+        public static bool AutoScroll = true;
+        public static bool AutoScrollDefault = true;
     }
 }

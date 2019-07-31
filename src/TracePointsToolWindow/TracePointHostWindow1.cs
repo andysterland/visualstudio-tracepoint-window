@@ -36,7 +36,7 @@
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            this.Caption = "TracePoints";
+            this.Caption = AppStringResources.lblToolWindowCaption;
             this._ucTracePoint = new TracePointHostWindow1Control();
             this._debugEventCallback = new VSEventCallbackWrapper();
             this._debugEventCallback.OnSessionStart += _debugEventCallback_OnSessionStart;

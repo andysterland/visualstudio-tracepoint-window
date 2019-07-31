@@ -61,6 +61,15 @@ namespace TracePointsToolWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto scroll to latest message.
+        /// </summary>
+        public static string btnAutoScrollTooltip {
+            get {
+                return ResourceManager.GetString("btnAutoScrollTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear all messages on new debug session.
         /// </summary>
         public static string btnClearOnSessionStartTooltip {
@@ -93,6 +102,15 @@ namespace TracePointsToolWindow {
         public static string lblDataGridColumnHeaderTime {
             get {
                 return ResourceManager.GetString("lblDataGridColumnHeaderTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TracePoints Window.
+        /// </summary>
+        public static string lblToolWindowCaption {
+            get {
+                return ResourceManager.GetString("lblToolWindowCaption", resourceCulture);
             }
         }
     }

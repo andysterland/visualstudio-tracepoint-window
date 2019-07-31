@@ -34,6 +34,15 @@
             _collectionViewSource.Filter += TracePoint_Filter;
 
             gridTracePoints.DataContext = _collectionViewSource;
+
+            if(Config.AutoScroll)
+            {
+                if (gridTracePoints.Items.Count > 0)
+                {
+                    var lastGridItem = gridTracePoints.Items.GetItemAt(gridTracePoints.Items.Count - 1);
+                    gridTracePoints.ScrollIntoView(lastGridItem);
+                }
+            }
         }
 
         public void AddTracePoint(TracePointMessage TracePoint)
@@ -57,7 +66,7 @@
             RefreshDataGrid();
         }
 
-        private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             RefreshDataGrid();
         }
@@ -72,9 +81,19 @@
             Config.ClearOnSessionStart = false;
         }
 
-        private void BtnClear_Click(object sender, RoutedEventArgs e)
+        private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             ClearAllTracePoints();
+        }
+
+        private void tglAutoScroll_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.AutoScroll = true;
+        }
+
+        private void tglAutoScroll_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Config.AutoScroll = false;
         }
     }
 }

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnAutoScrollTooltip" xml:space="preserve">
+    <value>Auto scroll to latest message</value>
+  </data>
   <data name="btnClearOnSessionStartTooltip" xml:space="preserve">
     <value>Clear all messages on new debug session</value>
   </data>
@@ -128,5 +131,8 @@
   </data>
   <data name="lblDataGridColumnHeaderTime" xml:space="preserve">
     <value>Time (ms)</value>
+  </data>
+  <data name="lblToolWindowCaption" xml:space="preserve">
+    <value>TracePoints Window</value>
   </data>
 </root>

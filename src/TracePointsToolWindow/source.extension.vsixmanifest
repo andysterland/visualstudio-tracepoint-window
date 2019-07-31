@@ -4,6 +4,7 @@
         <Identity Id="TracePointsToolWindow.25dd6cd0-360b-477a-ad74-b5d973f7a19a" Version="1.0" Language="en-US" Publisher="Andy Sterland" />
         <DisplayName>TracePointsToolWindow</DisplayName>
         <Description xml:space="preserve">An extension to Visual Studio that provides a TracePoints tool window with filterable view of TracePoints that fire while debugging.</Description>
+        <Preview>true</Preview>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
