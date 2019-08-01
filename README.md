@@ -1,7 +1,9 @@
 # Visual Studio - TracePoint - Window
 An extension to Visual Studio that provides a TracePoints tool window with filterable view of TracePoints that fire while debugging.
 
+<p align="center">
 ![TracePoint Window in Visual Studio 2019 in action](https://raw.githubusercontent.com/andysterland/visualstudio-tracepoint-window/master/docs/TracePointsWindow.gif)
+</p>
 
 # Usage
 
@@ -18,7 +20,9 @@ Then you just need to add a TracePoint while debugging and you will see the mess
 
 ## Features
 
+<p align="center">
 ![Overview of the TracePoint Window in Visual Studio 2019](https://raw.githubusercontent.com/andysterland/visualstudio-tracepoint-window/master/docs/UIScreenshot.png)
+</p>
 
 ### TracePoint Messages
 Each row in the TracePoint windows corresponds to a bound TracePoint firing. The first column shows the time, in milliseconds, since the start of the current debug session, and the second column shows the contents of the TracePoint message.
