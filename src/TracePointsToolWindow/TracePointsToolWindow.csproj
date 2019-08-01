@@ -106,6 +106,7 @@
     </Content>
     <Content Include="Resources\PreviewIcon.png">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\TracePointHostWindow1Command.png" />
     <VSCTCompile Include="TracePointsToolWindowPackage.vsct">
