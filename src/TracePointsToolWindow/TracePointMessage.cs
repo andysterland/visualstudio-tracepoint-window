@@ -19,21 +19,6 @@ namespace TracePointsToolWindow
             get;
             set;
         }
-        public string ProcessName
-        {
-            get;
-            set;
-        }
-        public int ProcessId
-        {
-            get;
-            set;
-        }
-        public int ThreadId
-        {
-            get;
-            set;
-        }
         public string Message
         {
             get;
@@ -45,32 +30,17 @@ namespace TracePointsToolWindow
             set;
         }
 
-        public TracePointMessage(DateTime Timestamp, double DeltaTime, string processName, int processId, int threadId, string message)
+        public TracePointMessage(DateTime Timestamp, double DeltaTime, string message)
         {
             this.Timestamp = Timestamp;
             this.DeltaTimeMs = DeltaTime;
             this.DisplayTime = String.Format("+{0:0,0}", this.DeltaTimeMs);
-            this.ProcessName = processName;
-            this.ProcessId = processId;
-            this.ThreadId = threadId;
             this.Message = message;
         }
 
         public bool IsMatch(string Filter)
         {
             if (Message.IndexOf(Filter, StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return true;
-            }
-            else if (ProcessName.IndexOf(Filter, StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return true;
-            }
-            else if (ProcessId.ToString().IndexOf(Filter, StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return true;
-            }
-            else if (ThreadId.ToString().IndexOf(Filter, StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 return true;
             }

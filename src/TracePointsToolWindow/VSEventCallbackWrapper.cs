@@ -64,7 +64,7 @@ namespace TracePointsToolWindow
             if (OnTracePointAdded != null)
             {
                 TimeSpan deltaTime = DateTime.Now - _sessionStartTime;
-                TracePointMessage tp = new TracePointMessage(DateTime.Now, deltaTime.TotalMilliseconds, "", 0, 0, Message);
+                TracePointMessage tp = new TracePointMessage(DateTime.Now, deltaTime.TotalMilliseconds, Message);
                 OnTracePointAddedEventArgs tpEvent = new OnTracePointAddedEventArgs(tp);
 
                 this.OnTracePointAdded.Invoke(this, tpEvent);

@@ -27,7 +27,7 @@
         <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"/>
-            <Setter Property="Margin" Value="2, 0, 0, 0"/>
+            <Setter Property="Padding" Value="2, 0, 0, 0"/>
         </Style>
         <Style x:Key="DataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="{DynamicResource {x:Static vsshell:VsBrushes.GridHeadingBackgroundKey}}"/>
@@ -63,7 +63,7 @@
             <RowDefinition Height="28"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <ToolBar Style="{StaticResource ToolBarStyle}" ToolBarTray.IsLocked="True">
                 <Button x:Name="btnClear" Click="btnClear_Click" HorizontalAlignment="Left" Style="{StaticResource ToolbarButtonStyle}" Content="{StaticResource ClearIcon}" ToolTipService.ToolTip="{x:Static local:AppStringResources.btnClearTooltip}">
@@ -114,10 +114,22 @@
                 </StackPanel>
             </ToolBar>
         </StackPanel>
-        <DataGrid Name="gridTracePoints" Grid.Row="1" VerticalScrollBarVisibility="Auto" EnableRowVirtualization="True"  Style="{StaticResource DataGridStyle}" ItemsSource="{Binding}" RowStyle="{StaticResource DataGridRowStyle}" ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}" RowHeaderStyle="{StaticResource DataGridRowHeaderStyle}" HorizontalGridLinesBrush="{DynamicResource {x:Static vsshell:VsBrushes.GridLineKey}}"  AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid Name="gridTracePoints" Grid.Row="1" VerticalScrollBarVisibility="Auto" EnableRowVirtualization="True" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding}" RowStyle="{StaticResource DataGridRowStyle}" ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}" RowHeaderStyle="{StaticResource DataGridRowHeaderStyle}" HorizontalGridLinesBrush="{DynamicResource {x:Static vsshell:VsBrushes.GridLineKey}}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderTime}" Width="80" Binding="{Binding DisplayTime}"  />
-                <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderMessage}" Binding="{Binding Message}" />
+                <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderTime}" Width="80" Binding="{Binding DisplayTime}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding Timestamp, StringFormat={}{0:HH:mm:ss}}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="{x:Static local:AppStringResources.lblDataGridColumnHeaderMessage}" Binding="{Binding Message}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip" Value="{Binding Message}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
