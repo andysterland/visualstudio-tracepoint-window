@@ -2,7 +2,7 @@
 An extension to Visual Studio that provides a TracePoints tool window with filterable view of TracePoints that fire while debugging.
 
 <p align="center">
-![TracePoint Window in Visual Studio 2019 in action](https://raw.githubusercontent.com/andysterland/visualstudio-tracepoint-window/master/docs/TracePointsWindow.gif)
+<img alt="TracePoint Window in Visual Studio 2019 in action" src="https://raw.githubusercontent.com/andysterland/visualstudio-tracepoint-window/master/docs/TracePointsWindow.gif" />
 </p>
 
 # Usage
@@ -21,7 +21,7 @@ Then you just need to add a TracePoint while debugging and you will see the mess
 ## Features
 
 <p align="center">
-![Overview of the TracePoint Window in Visual Studio 2019](https://raw.githubusercontent.com/andysterland/visualstudio-tracepoint-window/master/docs/UIScreenshot.png)
+<img alt="Overview of the TracePoint Window in Visual Studio 2019" src="https://raw.githubusercontent.com/andysterland/visualstudio-tracepoint-window/master/docs/UIScreenshot.png" />
 </p>
 
 ### TracePoint Messages
