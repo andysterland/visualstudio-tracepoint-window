@@ -51,6 +51,7 @@
       <DependentUpon>AppStringResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="IssueFree.cs" />
     <Compile Include="VSEventCallbackWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TracePointMessage.cs" />
